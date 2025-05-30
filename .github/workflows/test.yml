@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ "**" ]
   repository_dispatch:
-    types: ["run-github-actions-test-a", "run-github-actions-test-a-2nd"]
+    types: ["run-github-actions-test-a", "run-github-actions-test-a-2nd", "run-github-actions-test-a-3rd"]
   workflow_dispatch:
 
 jobs:
