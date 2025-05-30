@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ "**" ]
   repository_dispatch:
-    types: ["run-github-actions-test-a", "run-github-actions-test-a-2nd"]
+    types: ["run-github-actions-test-a", "run-github-actions-test-a-2nd", "run-github-actions-test-a-3rd"]
   workflow_dispatch:
 
 jobs:
@@ -14,6 +14,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Print repository_dispatch event info
+        if: github.event_name == 'repository_dispatch'
+        run: |
+          echo "トリガーイベント: ${{ github.event_name }}"
+          echo "送信元リポジトリ: ${{ github.event.repository.full_name }}"
+          echo "送信元ref: ${{ github.event.client_payload.ref }}"
+          echo "送信元コミット: ${{ github.event.client_payload.sha }}"
+          echo "イベントタイプ: ${{ github.event.action }}"
+          echo "クライアントペイロード:"
+          echo "${{ toJson(github.event.client_payload) }}"
+
       - uses: actions/checkout@v4
 
       - name: Use Node.js
