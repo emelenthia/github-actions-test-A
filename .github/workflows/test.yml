@@ -18,7 +18,7 @@ jobs:
         if: github.event_name == 'repository_dispatch'
         run: |
           echo "トリガーイベント: ${{ github.event_name }}"
-          echo "送信元リポジトリ: ${{ github.event.repository.full_name }}"
+          echo "送信元リポジトリ: ${{ github.event.client_payload.repository }}"
           echo "送信元ref: ${{ github.event.client_payload.ref }}"
           echo "送信元コミット: ${{ github.event.client_payload.sha }}"
           echo "イベントタイプ: ${{ github.event.action }}"
